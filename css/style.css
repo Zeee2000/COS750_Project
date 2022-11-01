@@ -1,0 +1,150 @@
+/* HTML ELEMENTS */
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+body{
+    font-family: 'Open Sans', sans-serif;
+}
+
+a{
+    outline: none;
+    border: none;
+    background: none;
+    color: white;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+a:hover{
+    opacity: 0.5;
+}
+
+h1{
+    font-size: 20px;
+    color: whitesmoke;
+}
+
+/* CLASSES */
+
+.active{
+    color: rgb(81, 181, 248);
+    font-weight: bold;
+}
+
+.container{
+    display: grid;
+    height: 100vh;
+    width: 100vw;
+
+    background-color: #333;
+
+    grid-template-rows: 50px 1fr;
+    justify-content: center;
+    align-content: center;
+}
+
+.nav{
+    background-color: #444;
+    border-bottom: 1px solid gray;
+
+    display: grid;
+    grid-template-columns: repeat(3, 100px) 1fr 300px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.exercise{
+    display: grid;
+
+    grid-template-rows: 1fr 100px;
+
+    height: 70vh;
+    margin-top: 20px;
+    width: 100vw;
+}
+
+.game{
+    background-color: #444;
+    display: grid;
+
+    grid-template-rows: 100px 1fr;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+}
+
+.sorter{
+    background-color: #555;
+    border-top: 1px solid #333;
+
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+
+    gap: 10px;
+    padding: 10px;
+    justify-content: center;
+}
+
+    .array-item{
+        display: grid;
+        align-items: center;
+        justify-content: center;
+
+        background-color: rgba(0, 0, 0, 0.199);
+        border-radius: 20px;
+        max-width: 150px;
+
+        font-size: 30px;
+        color: white;
+        cursor: default;
+    }
+
+    .sorted-item{
+        color: rgba(255, 255, 255, 0.15);
+    }
+
+    .active-item1, .card1{
+        border: 3px solid salmon;
+    }
+    .active-item2, .card2{
+        border: 3px solid lightskyblue;
+    }
+
+.description{
+    text-align: left;
+    color: white;
+
+    padding-left: 20px;
+    padding-right: 20px;
+
+    width: 90vw;
+}
+
+.cards{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+    .card1, .card2{
+        text-align: center;
+        display: grid;
+        background: rgba(0, 0, 0, 0.199);
+        height: 500px;
+        color: white;
+
+        align-items: center;
+        font-size: 150px;
+        border-radius: 20px;
+
+        transition: 0.5s;
+    }
+
+    .card:hover{
+        transform: scale(0.9);
+        opacity: 0.9;
+        cursor: pointer;
+    }
