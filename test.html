@@ -40,25 +40,26 @@
             <div class="request">Please select sorting order:</div>
             <button id="asc" class="active-order">ASCENDING</button>
             <button id="desc">DESCENDING</button>
-            <div id="instruction">Please select the <span id="compare">larger</span> number</div>
+            <span id="instruction">Please select the <span id="compare">larger</span> number</span>
+            <div id="moveCounter">0</div>
           </div>
           <div class="cards">
-            <div id="card1" onclick="clicked(1)" class="card1">6</div>
-            <div id="card2" onclick="clicked(2)" class="card2">5</div>
+            <div id="card1" onclick="selectLargest(1)" class="card1">10</div>
+            <div id="card2" onclick="selectLargest(2)" class="card2"></div>
           </div>
         </div>
-        <div class="sorter">
+        <div id="unsortedList" class="sorter">
           <div class="array-item-desc">Unsorted</div>
-          <div id="sortedItem_1" class="array-item sorted-item">10</div>
-          <div id="sortedItem_2" class="array-item active-item1">6</div>
-          <div id="sortedItem_3" class="array-item active-item2">5</div>
-          <div id="sortedItem_4" class="array-item">8</div>
-          <div id="sortedItem_5" class="array-item">7</div>
-          <div id="sortedItem_6" class="array-item">4</div>
-          <div id="sortedItem_7" class="array-item">2</div>
-          <div id="sortedItem_8" class="array-item">1</div>
+          <div id="sortedItem_1" style="border:3px solid salmon"  class="array-item" onclick="selectUnsortedItem(1)">10</div>
+          <div id="sortedItem_2" class="array-item" onclick="selectUnsortedItem(2)">6</div>
+          <div id="sortedItem_3" class="array-item" onclick="selectUnsortedItem(3)">5</div>
+          <div id="sortedItem_4" class="array-item" onclick="selectUnsortedItem(4)">8</div>
+          <div id="sortedItem_5" class="array-item" onclick="selectUnsortedItem(5)">7</div>
+          <div id="sortedItem_6" class="array-item" onclick="selectUnsortedItem(6)">4</div>
+          <div id="sortedItem_7" class="array-item" onclick="selectUnsortedItem(7)">2</div>
+          <div id="sortedItem_8" class="array-item" onclick="selectUnsortedItem(8)">1</div>
         </div>
-        <div class="sorter">
+        <div id="sortedList" class="sorter">
           <div class="array-item-desc">Sorted</div>
           <div id="sortedItem_1_sorted" class="array-item sorted"></div>
           <div id="sortedItem_2_sorted" class="array-item sorted"></div>
