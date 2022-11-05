@@ -27,8 +27,8 @@
 
     <div class="container">
       <div class="nav">
-        <a class="active">Tutorial</a>
-        <a href="guided.html">Guided</a>
+        <a href="index.html">Tutorial</a>
+        <a class="active">Guided</a>
         <a href="test.html">Test</a>
 
         <h1>Sorting Sally</h1>
@@ -37,7 +37,10 @@
         <div class="game">
           <div class="description">
             <h4>Welcome to Sorting Sally,</h4>
-            This is a description. Isn't it lovely. Wowowowowow. So Cool!
+            <div class="request">Please select sorting order:</div>
+            <button id="asc" class="active-order">ASCENDING</button>
+            <button id="desc">DESCENDING</button>
+            <div id="instruction">Please select the <span id="compare">larger</span> number</div>
           </div>
           <div class="cards">
             <div id="card1" onclick="clicked(1)" class="card1">6</div>
@@ -57,14 +60,14 @@
         </div>
         <div class="sorter">
           <div class="array-item-desc">Sorted</div>
-          <div id="sortedItem_1" class="array-item sorted"></div>
-          <div id="sortedItem_2" class="array-item sorted"></div>
-          <div id="sortedItem_3" class="array-item sorted"></div>
-          <div id="sortedItem_4" class="array-item sorted"></div>
-          <div id="sortedItem_5" class="array-item sorted"></div>
-          <div id="sortedItem_6" class="array-item sorted"></div>
-          <div id="sortedItem_7" class="array-item sorted"></div>
-          <div id="sortedItem_8" class="array-item sorted"></div>
+          <div id="sortedItem_1_sorted" class="array-item sorted"></div>
+          <div id="sortedItem_2_sorted" class="array-item sorted"></div>
+          <div id="sortedItem_3_sorted" class="array-item sorted"></div>
+          <div id="sortedItem_4_sorted" class="array-item sorted"></div>
+          <div id="sortedItem_5_sorted" class="array-item sorted"></div>
+          <div id="sortedItem_6_sorted" class="array-item sorted"></div>
+          <div id="sortedItem_7_sorted" class="array-item sorted"></div>
+          <div id="sortedItem_8_sorted" class="array-item sorted"></div>
         </div>
       </div>
     </div>

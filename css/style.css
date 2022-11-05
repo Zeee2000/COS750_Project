@@ -12,6 +12,11 @@ a{
     color: white;
     cursor: pointer;
     transition: 0.5s;
+    text-decoration: none;
+}
+
+a:enabled{
+    text-decoration: none;
 }
 
 a:hover{
@@ -21,6 +26,16 @@ a:hover{
 h1{
     font-size: 20px;
     color: whitesmoke;
+}
+
+button{
+    background-color:  rgba(0, 0, 0, 0.199);
+    border: none;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    height: 40px;
+    width: 200px;
 }
 
 /* CLASSES */
@@ -67,7 +82,7 @@ h1{
     background-color: #444;
     display: grid;
 
-    grid-template-rows: 100px 1fr;
+    grid-template-rows: 150px 1fr;
     justify-content: center;
     align-items: center;
     width: 100vw;
@@ -101,6 +116,7 @@ h1{
 
     .sorted{
         cursor: default;
+        display: none;
     }
 
     .array-item-desc{
@@ -135,6 +151,10 @@ h1{
     width: 90vw;
 }
 
+.active-order{
+    border: 3px solid white;
+}
+
 .cards{
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -142,13 +162,14 @@ h1{
     align-items: center;
     gap: 10px;
     margin-bottom: 20px;
+    margin-top: 40px;
 }
 
     .card1, .card2{
         text-align: center;
         display: grid;
         background: rgba(0, 0, 0, 0.199);
-        height: 500px;
+        height: 400px;
         color: white;
 
         align-items: center;
@@ -163,3 +184,20 @@ h1{
         opacity: 0.9;
         cursor: pointer;
     }
+
+.request{
+    margin-bottom: 5px;
+}
+
+/* IDS */
+
+#instruction{
+    width: 100%;
+    text-align: center;
+
+    font-size: 35px;
+}
+
+#compare{
+    text-decoration: underline;
+}
