@@ -1,4 +1,5 @@
 let numSorted = 0
+
 function selectLargest(value){
   let maxMoves = getNumberVisibleUnsorted() - 1
   let currentCounter = parseInt(document.getElementById("moveCounter").innerHTML) + 1
@@ -13,13 +14,17 @@ function selectLargest(value){
 
   card2.innerHTML = ""
 
-  setSelectedBorderDefault()
+  setAllBordersDefault()
   setSelectedBorder(card1.innerHTML, card2.innerHTML)
 
   if(currentCounter === maxMoves){
+    let x = 0
+    document.getElementById("moveCounter").innerHTML = x.toString();
+    setAllBordersDefault()
     insertCard1IntoSorted()
     hideCard1FromUnsorted()
     setCard1FromUnsorted()
+    numSorted = numSorted+1
   }
 }
 
@@ -28,29 +33,30 @@ function setCard1FromUnsorted(){
   let card1 =  document.getElementById("card1")
 
   for(let i = 1 ; i < unsortedGridChildren.length ; i++){
-    if(unsortedGridChildren[i].display != "none"){
+    if(unsortedGridChildren[i].innerHTML != "" && unsortedGridChildren[i].innerHTML != "Unsorted"){
       card1.innerHTML = unsortedGridChildren[i].innerHTML
+      unsortedGridChildren[i].style.border = "3px solid salmon"
       return
     }
   }
 }
 function hideCard1FromUnsorted(){
-  let unsortedGrid = document.getElementById("unsortedList")
-  let unsortedGridChildren = unsortedGrid.children
+  let unsortedGridChildren = document.getElementById("unsortedList").children
+
+  let card1Value = document.getElementById("card1").innerHTML
 
   for(let i = 0 ; i < unsortedGridChildren.length ; i++){
-    if(unsortedGridChildren[i].innerHTML == 1){
+    if(unsortedGridChildren[i].innerHTML == card1Value){
       unsortedGridChildren[i].style.display = "none"
+      unsortedGridChildren[i].innerHTML = ""
     }
   }
 }
 
 function insertCard1IntoSorted(){
-  let unsortedGrid = document.getElementById("sortedList")
-  let unsortedGridChildren = unsortedGrid.children
+  let unsortedGridChildren = document.getElementById("sortedList").children
   let card1Value = document.getElementById("card1").innerHTML
-
-  unsortedGridChildren[numSorted+1].style.display = "inline"
+  unsortedGridChildren[numSorted+1].style.display = "block"
   unsortedGridChildren[numSorted+1].innerHTML = card1Value
   return
 
@@ -59,26 +65,15 @@ function insertCard1IntoSorted(){
 function selectUnsortedItem(index){
   let id = "sortedItem_" + index;
   let selectedNumber = document.getElementById(id).getInnerHTML();
-  let fillSection = document.getElementById("card2").innerHTML = selectedNumber
-
+  let card2Value = document.getElementById("card2").innerHTML = selectedNumber
   let card1Value = document.getElementById("card1").innerHTML
 
-  setSelectedBorderDefault()
-  setSelectedBorder(card1Value, fillSection)
-}
-
-function setSelectedBorderDefault(){
-  let unsortedGrid = document.getElementById("unsortedList")
-  let unsortedGridChildren = unsortedGrid.children
-
-  for(let i = 0 ; i < unsortedGridChildren.length ; i++){
-      unsortedGridChildren[i].style.border = ""
-  }
+  setAllBordersDefault()
+  setSelectedBorder(card1Value, card2Value)
 }
 
 function setSelectedBorder(value1,value2){
-  let unsortedGrid = document.getElementById("unsortedList")
-  let unsortedGridChildren = unsortedGrid.children
+  let unsortedGridChildren = document.getElementById("unsortedList").children
 
   for(let i = 0 ; i < unsortedGridChildren.length ; i++){
     if (unsortedGridChildren[i].innerHTML == value1){
@@ -92,15 +87,21 @@ function setSelectedBorder(value1,value2){
 }
 
 function getNumberVisibleUnsorted(){
-  let unsortedGrid = document.getElementById("unsortedList")
-  let unsortedGridChildren = unsortedGrid.children
+  let unsortedGridChildren = document.getElementById("unsortedList").children
 
-  let numVisibleSorted = 0
+  let numVisibleUnsorted = 0
   for(let i = 0 ; i < unsortedGridChildren.length ; i++){
-    if (unsortedGridChildren[i].style.display != "none"){
-      numVisibleSorted +=1
+    if (unsortedGridChildren[i].innerHTML != ""){
+      numVisibleUnsorted +=1
     }
   }
+  return numVisibleUnsorted-1
+}
 
-  return numVisibleSorted-1
+function setAllBordersDefault(){
+  let unsortedGridChildren = document.getElementById("unsortedList").children
+
+  for(let i = 1 ; i < unsortedGridChildren.length ; i++){
+    unsortedGridChildren[i].style.border = ""
+  }
 }
