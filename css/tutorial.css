@@ -1,0 +1,114 @@
+/* HTML ELEMENTS */
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+body{
+    font-family: 'Open Sans', sans-serif;
+    color: white;
+}
+
+a{
+    outline: none;
+    border: none;
+    background: none;
+    color: white;
+    cursor: pointer;
+    transition: 0.5s;
+    text-decoration: none;
+}
+
+a:enabled{
+    text-decoration: none;
+}
+
+a:hover{
+    opacity: 0.5;
+}
+
+h1{
+    font-size: 20px;
+    color: whitesmoke;
+}
+
+button{
+    background-color:  rgba(0, 0, 0, 0.199);
+    border: none;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    height: 40px;
+    width: 200px;
+}
+
+/* CLASSES */
+
+.active{
+    color: rgb(81, 181, 248);
+    font-weight: bold;
+}
+
+.container{
+    display: grid;
+    height: 100vh;
+    width: 100vw;
+
+    background-color: #333;
+
+    grid-template-rows: 50px 1fr;
+    justify-content: center;
+    align-content: center;
+}
+
+.nav{
+    background-color: #444;
+    border-bottom: 1px solid gray;
+
+    display: grid;
+    grid-template-columns: repeat(3, 100px) 1fr 300px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    width: 100vw;
+}
+
+.info{
+    display: grid;
+
+    grid-template-rows: 2fr 0.5fr 1fr;
+
+    height: calc(100vh - 60px);
+    margin-top: 10px;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.item{
+    width: 99vw;
+    display: grid;
+    align-content: center;
+}
+
+.video{
+    background-color: rgba(255, 255, 255, 0.041);
+    border-radius: 20px;
+    height: 95%;
+    justify-content: center;
+}
+
+.desc{
+    background-color: rgba(255, 255, 255, 0.041);
+    border-radius: 20px;
+    height: 95%;
+}
+
+    .desc > div, .about > div{
+        margin-left: 20px;
+    }
+
+.about{
+    background-color: rgba(255, 255, 255, 0.041);
+    border-radius: 20px;
+    height: 90%;
+    text-align: left;
+}
