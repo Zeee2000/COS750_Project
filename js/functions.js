@@ -30,7 +30,7 @@ function onInit(){
     document.getElementById(currentItemID).innerHTML = array[i].toString();
   }
 
-  document.getElementById("card1").innerHTML = array[0].toString()
+  // document.getElementById("card1").innerHTML = array[0].toString()
 
   getNumbersToCompare()
 }
@@ -417,4 +417,14 @@ function setAllBordersDefault(){
   for(let i = 1 ; i < unsortedGridChildren.length ; i++){
     unsortedGridChildren[i].style.border = ""
   }
+}
+
+function continueTest(){
+  let doc = document.getElementsByClassName("messageContainer");
+  doc[0].style.display = "none";
+}
+
+function retryTest(){
+  let doc = document.getElementsByClassName("messageContainer");
+  doc[0].style.display = "none";
 }

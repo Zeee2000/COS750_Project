@@ -25,6 +25,19 @@
 
   <body onload="onInit()">
 
+    <div class="messageContainer">
+      <div class="message" id="message">
+        <h2 class="title">You made it!</h2>
+        <div class="descriptionMessage">
+          This is the message you received for what you did
+        </div>
+        <div class="buttonsMessage">
+          <button onclick="retryTest()" class="message-but">Retry</button>
+          <button onclick="continueTest()" class="message-but">Continue</button>
+        </div>
+      </div>
+    </div>
+
     <div class="container">
       <div class="nav">
         <a href="index.html">Tutorial</a>
@@ -36,22 +49,20 @@
       <div class="exercise">
         <div class="game">
           <div class="description">
-            <h4>Welcome to Sorting Sally,</h4>
-            <div class="request">Please select sorting order:</div>
-            <button id="asc" class="active-order">ASCENDING</button>
-            <button id="desc">DESCENDING</button>
-            <span id="instruction">Please select the <span id="compare">larger</span> number</span>
-            <div id="moveCounter">0</div>
-            <div id="score">100</div>
+            <!-- <span id="instruction">Please select the <span id="compare">larger</span> number</span> -->
+            <span id="instruction">Please select the sorting order</span>
+            <br>
+            <span style="font-weight: bold; display: block;">Round Moves <div style="display: inline-block; font-weight: normal; margin-left: 40px;" id="moveCounter">0</div></span>
+            <span style="font-weight: bold; display: block;">Round Score <div style="display: inline-block; font-weight: normal; margin-left: 47px;" id="score">100</div></span>
           </div>
           <div class="cards">
-            <div id="card1" onclick="selectSmallest(1)" class="card1"></div>
-            <div id="card2" onclick="selectSmallest(2)" class="card2"></div>
+            <div id="card1" onclick="select(1)" class="card1">Ascending</div>
+            <div id="card2" onclick="select(2)" class="card2">Descending</div>
           </div>
         </div>
         <div id="unsortedList" class="sorter">
           <div class="array-item-desc">Unsorted</div>
-          <div id="sortedItem_1" style="border:3px solid salmon"  class="array-item" onclick="selectUnsortedItem(1)"></div>
+          <div id="sortedItem_1" class="array-item" onclick="selectUnsortedItem(1)"></div>
           <div id="sortedItem_2" class="array-item" onclick="selectUnsortedItem(2)"></div>
           <div id="sortedItem_3" class="array-item" onclick="selectUnsortedItem(3)"></div>
           <div id="sortedItem_4" class="array-item" onclick="selectUnsortedItem(4)"></div>
@@ -62,18 +73,41 @@
         </div>
         <div id="sortedList" class="sorter">
           <div class="array-item-desc">Sorted</div>
-          <div id="sortedItem_1_sorted" class="array-item sorted"></div>
-          <div id="sortedItem_2_sorted" class="array-item sorted"></div>
-          <div id="sortedItem_3_sorted" class="array-item sorted"></div>
-          <div id="sortedItem_4_sorted" class="array-item sorted"></div>
-          <div id="sortedItem_5_sorted" class="array-item sorted"></div>
-          <div id="sortedItem_6_sorted" class="array-item sorted"></div>
-          <div id="sortedItem_7_sorted" class="array-item sorted"></div>
-          <div id="sortedItem_8_sorted" class="array-item sorted"></div>
+          <div class="array-item sorted">
+            <div id="sortedItem_1_sorted" class="sortedValue"></div>
+            <div id="sortedItem_1_sorted_score" class="sortedScore">Score: 100</div>
+          </div>
+          <div class="array-item sorted">
+            <div id="sortedItem_2_sorted" class="sortedValue"></div>
+            <div id="sortedItem_2_sorted_score" class="sortedScore">Score: 100</div>
+          </div>
+          <div class="array-item sorted">
+            <div id="sortedItem_3_sorted" class="sortedValue"></div>
+            <div id="sortedItem_3_sorted_score" class="sortedScore">Score: 100</div>
+          </div>
+          <div class="array-item sorted">
+            <div id="sortedItem_4_sorted" class="sortedValue"></div>
+            <div id="sortedItem_4_sorted_score" class="sortedScore">Score: 100</div>
+          </div>
+          <div class="array-item sorted">
+            <div id="sortedItem_5_sorted" class="sortedValue"></div>
+            <div id="sortedItem_5_sorted_score" class="sortedScore">Score: 100</div>
+          </div>
+          <div class="array-item sorted">
+            <div id="sortedItem_6_sorted" class="sortedValue"></div>
+            <div id="sortedItem_6_sorted_score" class="sortedScore">Score: 100</div>
+          </div>
+          <div class="array-item sorted">
+            <div id="sortedItem_7_sorted" class="sortedValue"></div>
+            <div id="sortedItem_7_sorted_score" class="sortedScore">Score: 100</div>
+          </div>
+          <div class="array-item sorted">
+            <div id="sortedItem_8_sorted" class="sortedValue"></div>
+            <div id="sortedItem_8_sorted_score" class="sortedScore">Score: 100</div>
+          </div>
         </div>
       </div>
     </div>
-
   </body>
 
 </html>

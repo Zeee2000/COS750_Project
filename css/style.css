@@ -40,6 +40,74 @@ button{
 
 /* CLASSES */
 
+.messageContainer{
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  height: 100vh;
+  width: 100vw;
+
+  background-color: rgba(0, 0, 0, 0.507);
+  display: grid;
+
+  justify-content: center;
+  align-content: center;
+}
+
+.message{
+  background-color: whitesmoke;
+  height: 40vh;
+  width: 40vw;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  grid-template-rows: 100px 1fr 30px;
+  text-align: center;
+}
+
+.descriptionMessage{
+  display: grid;
+  background-color: rgb(240, 240, 240);
+  width: 40vw;
+  height: 100%;
+  align-content: center;
+}
+
+.buttonsMessage{
+  background-color: rgb(218, 218, 218);
+  height: 100%;
+  width: 40vw;
+
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  justify-content: center;
+  align-content: center;
+}
+
+.message-but{
+  background: none;
+  color: rgb(0, 140, 255);
+  text-align: left;
+  width: 20vw;
+  padding-left: 10px;
+}
+
+.message-but:hover{
+  opacity: 0.4;
+}
+
+.message-but:last-child{
+  text-align: right;
+  padding-right: 10px;
+}
+
+.title{
+  font-size: 40px;
+}
+
 .active{
     color: rgb(81, 181, 248);
     font-weight: bold;
@@ -82,7 +150,7 @@ button{
     background-color: #444;
     display: grid;
 
-    grid-template-rows: 150px 1fr;
+    grid-template-rows: 140px 1fr;
     justify-content: center;
     align-items: center;
     width: 100vw;
@@ -116,7 +184,19 @@ button{
 
     .sorted{
         cursor: default;
+        display: grid;
+        grid-template-rows: 1fr 20px;
+        justify-content: center;
+        text-align: center;
         display: none;
+    }
+
+    .sortedScore{
+      font-size: 10px;
+    }
+
+    .sortedValue{
+      padding-top: 12px;
     }
 
     .array-item-desc{
