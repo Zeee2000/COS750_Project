@@ -45,11 +45,12 @@ button{
   top: 0;
   left: 0;
 
+
   height: 100vh;
   width: 100vw;
 
   background-color: rgba(0, 0, 0, 0.507);
-  display: grid;
+  display: none;
 
   justify-content: center;
   align-content: center;

@@ -1,6 +1,6 @@
 let numSorted = 0
 let queueToCompare = []
-
+let order = ""
 let round_scores = [];
 
 // This function is called when initialising the app.
@@ -21,6 +21,13 @@ function onInit(){
 
   for (let i = 0 ; i< numNumbers ; i++){
     let randomNumber = Math.floor((Math.random() * 100) + 1);
+
+    while(true){
+      randomNumber = Math.floor((Math.random() * 100) + 1);
+      if(!array.includes(randomNumber)){
+        break
+      }
+    }
     array.push(randomNumber)
   }
 
@@ -32,7 +39,40 @@ function onInit(){
 
   // document.getElementById("card1").innerHTML = array[0].toString()
 
-  getNumbersToCompare()
+
+}
+
+function select(value){
+  let card1Value =  document.getElementById("card1").innerHTML
+  let card2Value = document.getElementById("card2").innerHTML
+
+  if(value == "1" && card1Value == "Ascending"){
+    order = "Ascending";
+    setAllBordersDefault();
+    setCard1FromUnsorted()
+    document.getElementById("card2").innerHTML = ""
+    getNumbersToCompare()
+    document.getElementById("instruction").innerHTML = "Ascending order : Select the smallest number"
+    return;
+  }
+
+  if(value == "2" && card2Value == "Descending"){
+    order = "Descending";
+    setAllBordersDefault();
+    setCard1FromUnsorted();
+    document.getElementById("card2").innerHTML = ""
+    getNumbersToCompare()
+    document.getElementById("instruction").innerHTML = "Descending order : Select the largest number"
+    return;
+  }
+
+  if(order == "Ascending"){
+    selectSmallest(value)
+  }
+
+  else if ( order == "Descending"){
+    selectLargest(value)
+  }
 }
 
 // This function handles the queue that determines the next number that needs to be compared to in the unsorted list.
@@ -42,7 +82,7 @@ function getNumbersToCompare(){
   let unsortedGridChildren = document.getElementById("unsortedList").children
   let foundCurrentSelected = false;
   for(let i = 1 ; i < unsortedGridChildren.length ; i++){
-    if (window.getComputedStyle(unsortedGridChildren[i]).getPropertyValue("border") == "3px solid rgb(250, 128, 114)"){
+    if (window.getComputedStyle(unsortedGridChildren[i]).getPropertyValue("border") != "0px none rgb(255, 255, 255)"){
       foundCurrentSelected = true
       continue
     }
@@ -74,6 +114,7 @@ function getLastNumberToCompare(){
 // The function is also responsible for the scoring system.
 function selectLargest(value){
 
+  pointsDeducted = false;
   let lastNumber = getLastNumberToCompare()
 
   let bEndOfRound = false;
@@ -100,9 +141,10 @@ function selectLargest(value){
     current_score = current_score - 5
 
     document.getElementById("score").innerHTML = current_score;
-    getNumbersToCompare()
+    pointsDeducted = true
+
     if(current_score <= 0 ){
-      alert("Bro what are you even doing?")
+      showFailedScreen()
     }
   }
 
@@ -111,11 +153,10 @@ function selectLargest(value){
 
     current_score = current_score - 10
     if(current_score <= 0 ){
-      alert("Bro what are you even doing?")
+      showFailedScreen()
     }
-
+    pointsDeducted = true
     document.getElementById("score").innerHTML = current_score;
-    getNumbersToCompare()
   }
 
   else
@@ -153,7 +194,7 @@ function selectLargest(value){
 
     if (correctSelected == false){
         // We cut the player off because the ordering is completely incorrect now.
-      alert("gg ez bro you're done")
+      showFailedScreen()
     }
 
     setAllBordersDefault()
@@ -182,16 +223,52 @@ function selectLargest(value){
       setCard1FromUnsorted()
 
       // We can render a small dialogue box that will basically allow the user to view their score of the run and there shuld be a retry button that they can click on to refresh the page.
-      // alert("You're a bot but your result is as follows :" + averageScore )
+      showCompleteScreen(averageScore)
     }
     numSorted = numSorted+1
   }
+  if (pointsDeducted){
+    getNumbersToCompare()
+  }
+}
+
+function showFailedScreen (){
+  document.getElementById("completeMessage").style.display="grid";
+  document.getElementById("completeTitle").innerHTML="You have made too many mistakes";
+
+  let roundString = ""
+  for(let i =0 ; i<round_scores.length; i++){
+    roundString = roundString + "<br>" + "Round " + (i+1)+ ": " + round_scores[i];
+  }
+
+  if (roundString == ""){
+    roundString = "No successful runs were completed"
+  }
+
+  document.getElementById("completeDescription").innerHTML="Your scores for each round so far are as follows " + "<br>" + roundString;
+}
+
+function showCompleteScreen (averageScore){
+  document.getElementById("completeMessage").style.display="grid";
+  document.getElementById("completeTitle").innerHTML="You have completed the challenge";
+
+  let roundString = ""
+  for(let i =0 ; i<round_scores.length; i++){
+    roundString = roundString + "<br>" + "Round " + (i+1)+ ": " + round_scores[i];
+  }
+
+  if (roundString == ""){
+    roundString = "No successful runs were completed"
+  }
+
+  roundString = roundString + "<br>" + "Average Score : " + averageScore
+  document.getElementById("completeDescription").innerHTML="Your scores for each round so far are as follows " + "<br>" + roundString;
 }
 
 function selectSmallest(value){
 
   let lastNumber = getLastNumberToCompare()
-
+  let pointsDeducted = false;
   let bEndOfRound = false;
 
   let maxMoves = getNumberVisibleUnsorted() - 1
@@ -216,9 +293,9 @@ function selectSmallest(value){
     current_score = current_score - 5
 
     document.getElementById("score").innerHTML = current_score;
-    getNumbersToCompare()
+    pointsDeducted = true
     if(current_score <= 0 ){
-      alert("Bro what are you even doing?")
+      showFailedScreen()
     }
   }
 
@@ -227,11 +304,12 @@ function selectSmallest(value){
 
     current_score = current_score - 10
     if(current_score <= 0 ){
-      alert("Bro what are you even doing?")
+      showFailedScreen()
     }
 
     document.getElementById("score").innerHTML = current_score;
-    getNumbersToCompare()
+    pointsDeducted = true
+
   }
 
   else
@@ -269,7 +347,7 @@ function selectSmallest(value){
 
     if (correctSelected == false){
       // We cut the player off because the ordering is completely incorrect now.
-      alert("gg ez bro you're done")
+      showFailedScreen()
     }
 
     setAllBordersDefault()
@@ -298,9 +376,13 @@ function selectSmallest(value){
       setCard1FromUnsorted()
 
       // We can render a small dialogue box that will basically allow the user to view their score of the run and there shuld be a retry button that they can click on to refresh the page.
-      // alert("You're a bot but your result is as follows :" + averageScore )
+      showCompleteScreen(averageScore)
     }
     numSorted = numSorted+1
+  }
+
+  if (pointsDeducted){
+    getNumbersToCompare()
   }
 }
 
@@ -363,10 +445,14 @@ function hideCard1FromUnsorted(){
 
 // this function is called at the end of the iteration to add the finally selected card into the sorted list.
 function insertCard1IntoSorted(){
+
+  let IDtoInsert = "sortedItem_"+ (numSorted+1) + "_sorted"
+  let IDtoInsertScore = "sortedItem_"+ (numSorted+1) + "_sorted_score"
   let unsortedGridChildren = document.getElementById("sortedList").children
   let card1Value = document.getElementById("card1").innerHTML
   unsortedGridChildren[numSorted+1].style.display = "grid"
-  unsortedGridChildren[numSorted+1].innerHTML = card1Value
+  document.getElementById(IDtoInsert).innerHTML = card1Value
+  document.getElementById(IDtoInsertScore).innerHTML = "Score: " + round_scores[round_scores.length-1]
   return
 
 }
@@ -425,6 +511,5 @@ function continueTest(){
 }
 
 function retryTest(){
-  let doc = document.getElementsByClassName("messageContainer");
-  doc[0].style.display = "none";
+  location.reload();
 }
