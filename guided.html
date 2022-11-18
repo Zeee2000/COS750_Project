@@ -1,77 +1,113 @@
 <!doctype html>
 <html class="no-js" lang="">
-  <head>
-    <meta charset="utf-8">
-    <title>COS750 Sorting Tips</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+  <meta charset="utf-8">
+  <title>COS750 Sorting Tips</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta property="og:title" content="">
-    <meta property="og:type" content="">
-    <meta property="og:url" content="">
-    <meta property="og:image" content="">
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
 
-    <link rel="manifest" href="site.webmanifest">
-    <link rel="apple-touch-icon" href="icon.png">
-    <!-- Place favicon.ico in the root directory -->
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
 
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/style.css">
 
-    <meta name="theme-color" content="#fafafa">
-    <script src="js/functions.js"></script>
-  </head>
+  <meta name="theme-color" content="#fafafa">
+  <script src="js/guided.js"></script>
+</head>
 
-  <body>
+<body onload="onInit()">
 
-    <div class="container">
-      <div class="nav">
-        <a href="index.html">Tutorial</a>
-        <a class="active">Guided</a>
-        <a href="test.html">Test</a>
+<div id="completeMessage" class="messageContainer">
+  <div class="message" id="message">
+    <h2 id="completeTitle" class="title">You made it!</h2>
+    <div id="completeDescription" class="descriptionMessage">
+      This is the message you received for what you did
+    </div>
+    <div class="buttonsMessage">
+      <button onclick="retryTest()" class="message-but">Retry</button>
+      <button onclick="continueTest()" class="message-but">Continue</button>
+    </div>
+  </div>
+</div>
 
-        <h1>Sorting Sally</h1>
+<div class="container">
+  <div class="nav">
+    <a href="index.html">Tutorial</a>
+    <a href="guided.html">Guided</a>
+    <a class="active">Test</a>
+
+    <h1>Sorting Sally</h1>
+  </div>
+  <div class="exercise">
+    <div class="game">
+      <div class="description">
+        <!-- <span id="instruction">Please select the <span id="compare">larger</span> number</span> -->
+        <span id="instruction">Please select the sorting order</span>
+        <br>
+        <span style="font-weight: bold; display: block;">Round Moves <div style="display: inline-block; font-weight: normal; margin-left: 40px;" id="moveCounter">0</div></span>
+        <span style="font-weight: bold; display: block;">Round Score <div style="display: inline-block; font-weight: normal; margin-left: 47px;" id="score">100</div></span>
       </div>
-      <div class="exercise">
-        <div class="game">
-          <div class="description">
-            <h4>Welcome to Sorting Sally,</h4>
-            <div class="request">Please select sorting order:</div>
-            <button id="asc" class="active-order">ASCENDING</button>
-            <button id="desc">DESCENDING</button>
-            <div id="instruction">Please select the <span id="compare">larger</span> number</div>
-          </div>
-          <div class="cards">
-            <div id="card1" onclick="clicked(1)" class="card1">6</div>
-            <div id="card2" onclick="clicked(2)" class="card2">5</div>
-          </div>
-        </div>
-        <div class="sorter">
-          <div class="array-item-desc">Unsorted</div>
-          <div id="sortedItem_1" class="array-item sorted-item">10</div>
-          <div id="sortedItem_2" class="array-item active-item1">6</div>
-          <div id="sortedItem_3" class="array-item active-item2">5</div>
-          <div id="sortedItem_4" class="array-item">8</div>
-          <div id="sortedItem_5" class="array-item">7</div>
-          <div id="sortedItem_6" class="array-item">4</div>
-          <div id="sortedItem_7" class="array-item">2</div>
-          <div id="sortedItem_8" class="array-item">1</div>
-        </div>
-        <div class="sorter">
-          <div class="array-item-desc">Sorted</div>
-          <div id="sortedItem_1_sorted" class="array-item sorted"></div>
-          <div id="sortedItem_2_sorted" class="array-item sorted"></div>
-          <div id="sortedItem_3_sorted" class="array-item sorted"></div>
-          <div id="sortedItem_4_sorted" class="array-item sorted"></div>
-          <div id="sortedItem_5_sorted" class="array-item sorted"></div>
-          <div id="sortedItem_6_sorted" class="array-item sorted"></div>
-          <div id="sortedItem_7_sorted" class="array-item sorted"></div>
-          <div id="sortedItem_8_sorted" class="array-item sorted"></div>
-        </div>
+      <div class="cards">
+        <div id="card1" onclick="select(1)" class="card1">Ascending</div>
+        <div id="card2" onclick="select(2)" class="card2">Descending</div>
       </div>
     </div>
-
-  </body>
+    <div id="unsortedList" class="sorter">
+      <div class="array-item-desc">Unsorted</div>
+      <div id="sortedItem_1" class="array-item" onclick="selectUnsortedItem(1)"></div>
+      <div id="sortedItem_2" class="array-item" onclick="selectUnsortedItem(2)"></div>
+      <div id="sortedItem_3" class="array-item" onclick="selectUnsortedItem(3)"></div>
+      <div id="sortedItem_4" class="array-item" onclick="selectUnsortedItem(4)"></div>
+      <div id="sortedItem_5" class="array-item" onclick="selectUnsortedItem(5)"></div>
+      <div id="sortedItem_6" class="array-item" onclick="selectUnsortedItem(6)"></div>
+      <div id="sortedItem_7" class="array-item" onclick="selectUnsortedItem(7)"></div>
+      <div id="sortedItem_8" class="array-item" onclick="selectUnsortedItem(8)"></div>
+    </div>
+    <div id="sortedList" class="sorter">
+      <div class="array-item-desc">Sorted</div>
+      <div class="array-item sorted">
+        <div id="sortedItem_1_sorted" class="sortedValue"></div>
+        <div id="sortedItem_1_sorted_score" class="sortedScore">Score: 100</div>
+      </div>
+      <div class="array-item sorted">
+        <div id="sortedItem_2_sorted" class="sortedValue"></div>
+        <div id="sortedItem_2_sorted_score" class="sortedScore">Score: 100</div>
+      </div>
+      <div class="array-item sorted">
+        <div id="sortedItem_3_sorted" class="sortedValue"></div>
+        <div id="sortedItem_3_sorted_score" class="sortedScore">Score: 100</div>
+      </div>
+      <div class="array-item sorted">
+        <div id="sortedItem_4_sorted" class="sortedValue"></div>
+        <div id="sortedItem_4_sorted_score" class="sortedScore">Score: 100</div>
+      </div>
+      <div class="array-item sorted">
+        <div id="sortedItem_5_sorted" class="sortedValue"></div>
+        <div id="sortedItem_5_sorted_score" class="sortedScore">Score: 100</div>
+      </div>
+      <div class="array-item sorted">
+        <div id="sortedItem_6_sorted" class="sortedValue"></div>
+        <div id="sortedItem_6_sorted_score" class="sortedScore">Score: 100</div>
+      </div>
+      <div class="array-item sorted">
+        <div id="sortedItem_7_sorted" class="sortedValue"></div>
+        <div id="sortedItem_7_sorted_score" class="sortedScore">Score: 100</div>
+      </div>
+      <div class="array-item sorted">
+        <div id="sortedItem_8_sorted" class="sortedValue"></div>
+        <div id="sortedItem_8_sorted_score" class="sortedScore">Score: 100</div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
 
 </html>
