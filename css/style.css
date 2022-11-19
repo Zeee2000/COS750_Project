@@ -54,6 +54,8 @@ button{
 
   justify-content: center;
   align-content: center;
+
+  z-index: 100;
 }
 
 .message{
@@ -63,7 +65,7 @@ button{
   display: grid;
   align-items: center;
   justify-content: center;
-  grid-template-rows: 100px 1fr 30px;
+  grid-template-rows: auto 1fr 30px;
   text-align: center;
 }
 

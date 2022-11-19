@@ -261,7 +261,7 @@ function showIncorrectNumberSelected(){
 
 function showIncorrectOrderSelected(){
   document.getElementById("completeMessage").style.display="grid";
-  document.getElementById("completeTitle").innerHTML="Oh no, you have selected the incorrect number for" + order + " order";
+  document.getElementById("completeTitle").innerHTML="Oh no, you have selected the incorrect number for " + order.toLowerCase() + " order";
 
   document.getElementById("completeDescription").innerHTML="Think carefully and select the correct number for the ordering type"
 }
